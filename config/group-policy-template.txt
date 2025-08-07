@@ -1,1 +1,43 @@
+Group Policy Template – PixelForge Studios
+==========================================
+
+GPO Name: [Insert GPO Name Here]
+Linked To: [e.g., OU=Employees,DC=pixelforge,DC=local]
+Created By: [Your Name]
+Date Created: [MM/DD/YYYY]
+
+------------------------------------------------------------
+Policy Purpose:
+[Brief description of what this GPO is intended to do.]
+
+------------------------------------------------------------
+Computer Configuration:
+- Policies > Administrative Templates > System
+  - [e.g., Enable Ctrl+Alt+Del requirement at logon: Enabled]
+  - [e.g., Turn off Windows Defender: Disabled]
+
+- Policies > Windows Settings > Security Settings
+  - Account Policies > Password Policy
+    - Minimum password length: [e.g., 12 characters]
+    - Password must meet complexity requirements: [Enabled]
+  - Local Policies > Audit Policy
+    - Audit logon events: [Success, Failure]
+
+------------------------------------------------------------
+User Configuration:
+- Policies > Administrative Templates > Desktop
+  - Hide and disable all items on the desktop: [Disabled]
+
+- Policies > Windows Settings > Folder Redirection
+  - Documents: Redirect to \\pixelforge.local\users\%USERNAME%\Documents
+
+------------------------------------------------------------
+Additional Notes:
+- [Any special instructions, exceptions, or dependencies]
+- [e.g., This GPO should not be applied to AdminTeam users]
+
+------------------------------------------------------------
+Change Log:
+- [MM/DD/YYYY] – Created by [Your Name]
+- [MM/DD/YYYY] – Updated password policy settings
 
