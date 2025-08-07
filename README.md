@@ -51,6 +51,8 @@ This homelab accomplishes three core tasks:
 
 ---
 
+---
+
 ### 3. Configure Shared Folder Access
 
 - On `DC01`, create a folder: `C:\SharedDesigns`
