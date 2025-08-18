@@ -28,12 +28,19 @@ foreach ($user in $users) {
     $group = $user.Group
     $password = ConvertTo-SecureString "P@ssword123" -AsPlainText -Force
 
+    # Check if user already exists
+    if (-not (Get-ADUser -Filter { SamAccountName -eq $username })) {
     New-ADUser -Name $username `
                -SamAccountName $username `
                -UserPrincipalName "$username@pixelforge.local" `
                -AccountPassword $password `
                -Enabled $true `
                -Path "OU=Employees,DC=pixelforge,DC=local"
+
+                Write-Host "Created user: $username"
+    } else {
+        Write-Warning "User '$username' already exists. Skipping creation."
+    }
 
     Add-ADGroupMember -Identity $group -Members $username
 }
