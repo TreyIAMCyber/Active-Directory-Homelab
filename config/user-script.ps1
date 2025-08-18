@@ -4,9 +4,14 @@ Import-Module ActiveDirectory
 # Create Organizational Unit
 New-ADOrganizationalUnit -Name "Employees" -Path "DC=pixelforge,DC=local"
 
-# Create Groups
-New-ADGroup -Name "DesignTeam" -GroupScope Global -GroupCategory Security -Path "OU=Employees,DC=pixelforge,DC=local"
-New-ADGroup -Name "AdminTeam" -GroupScope Global -GroupCategory Security -Path "OU=Employees,DC=pixelforge,DC=local"
+# Checks for AdminTeam and DesignTeam groups to avoid error
+if (-not (Get-ADGroup -Filter { Name -eq "DesignTeam" })) {
+    New-ADGroup -Name "DesignTeam" -GroupScope Global -Path "OU=Employees,DC=pixelforge,DC=local"
+}
+
+if (-not (Get-ADGroup -Filter { Name -eq "AdminTeam" })) {
+    New-ADGroup -Name "AdminTeam" -GroupScope Global -Path "OU=Employees,DC=pixelforge,DC=local"
+}
 
 # Define users and their group memberships
 $users = @(
